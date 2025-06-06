@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { a } from "framer-motion/client";
 import { FiGithub, FiTwitter, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
 
@@ -9,8 +9,8 @@ function Header() {
 
   const [contactForm, setContactForm] = useState(false);
 
-  const openContactForm = () => setContactForm(true)
-  const closeContactForm = () => setContactForm(false)
+  const openContactForm = () => setContactForm(true);
+  const closeContactForm = () => setContactForm(false);
   return (
     <header className="absolute w-full z-50 transition-all duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
@@ -93,7 +93,7 @@ function Header() {
 
         {/* hire me button */}
         <motion.button
-        onClick={openContactForm}
+          onClick={openContactForm}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
@@ -163,48 +163,108 @@ function Header() {
           </div>
 
           <button
-          onClick={() => {
-            toggleMenu()
-          }}
-          className="mt-4 block w-full px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-violet-400 font-bold">Contact Me</button>
+            onClick={() => {
+              toggleMenu();
+              openContactForm()
+            }}
+            className="mt-4 block w-full px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-violet-400 font-bold"
+          >
+            Contact Me
+          </button>
         </div>
       </motion.div>
 
       {/* contack form  */}
-      {contactForm && (
-        <motion.div 
-        initial={{opacity: 0}}
-        animate={{opacity: 1}}
-        exit={{opacity: 0}}
-        transition={{duration:0.5}}
-        className="fixed inset-0 bg-black/50 background-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl
-           w-full max-w-md p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h1 className="text-2xl font-bold text-gray-300">
-                Get In Touch
-              </h1>
-              <button onClick={closeContactForm}>
-                <FiX  className="w-5 h-5 text-gray-300 font-extrabold"/>
-              </button>
-            </div>
-
-            {/* Input field  */}
-            <form className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-                  Name
-                </label>
-                <input type="text"
-                id="name"
-                placeholder="Your Name"
-                className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none "
-                 />
+      <AnimatePresence>
+        {contactForm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 bg-black/50 background-blur-sm z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 30 }}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 30,
+                duration: 0.8,
+              }}
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-xl
+           w-full max-w-md p-6"
+            >
+              <div className="flex justify-between items-center mb-4">
+                <h1 className="text-2xl font-bold text-gray-300">
+                  Get In Touch
+                </h1>
+                <button onClick={closeContactForm}>
+                  <FiX className="w-5 h-5 text-gray-300 font-extrabold" />
+                </button>
               </div>
-            </form>
-           </div>
-        </motion.div>
-      )}
+
+              {/* Input field  */}
+              <form className="space-y-4">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-300 mb-1"
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="Your Name"
+                    className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none bg-gray-700 "
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-300 mb-1"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Your Email"
+                    className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none bg-gray-700 "
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-300 mb-1"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    rows="4"
+                    type="text"
+                    id="message"
+                    placeholder="How Can Help You"
+                    className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none bg-gray-700 "
+                  />
+                </div>
+
+                <motion.button
+                  type="submit"
+                  initial={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="w-full px-4 py-2 bg-gradient-to-r from-violet-600 to-violet-400 hover:from-violet-700 hover:to-purple-700 transition-all duration-300 rounded-lg shadow-md hover:shadow-lg hover:shadow-violet-600/50"
+                >
+                  Send Message
+                </motion.button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
