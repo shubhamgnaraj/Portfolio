@@ -1,0 +1,54 @@
+import React from "react";
+
+function AboutSection() {
+  return (
+    <section className="about-section w-full flex flex-col items-center justify-center bg-[#000000]">
+      <h1 className="about-tittle mb-5 text-5xl font-bold">About Me</h1>
+
+      <div className="bento-grid ">
+        <di className="card intro ">
+          <div className="flex flex-col items-start w-1/2">
+            <h1 className="text-2xl font-semibold text-white ">
+              Hi There, I'M Shubham
+            </h1>
+            <p className="text-[#7b7b7b] mt-2  text-sm">
+              I specialize in frontend development, crafting dynamic, visually
+              engaging, and highly responsive websites that provide seamless
+              user experiences. With a strong foundation in HTML, CSS and
+              Javascript, I focus on building modern web interface that are not
+              only aesthetically appealing but also optimized for performance
+              and accessibility. My expertise extends to advanced frameworks
+              like react and Tailwind CSS, anabling me to create interactive,
+              scalable, and efficient applications. Wheter It's designing sleek
+              UI components, implementing smooth animations, or enhancing use
+              interctions, my goal is to develop web solutions that are both
+              functional and innovative.
+            </p>
+          </div>
+
+          <div className="w-1/2 flex items-center justify-center relative">
+            <img
+              src="./images/shubhamGanraj.png"
+              className="w-57 object-cover"
+              alt=""
+            />
+            <div class="absolute bottom-4 left-0 w-1/2 h-1/4 bg-gradient-to-t from-[#190635] to-transparent ml-24"></div>
+          </div>
+        </di>
+
+        <di className="card tech">
+          <h1 className="text-2xl font-semibold text-white ">
+           Tech Stack
+          </h1>
+          <p>
+            I specialize in a diverse range of programming languages, frameworks, and development tools that empower me to build robust, scalable, and high-performing applications. With a strong command of HTML, CSS and Javascript, I create visually appealing and responsive web interfaces that enhance user engagement. My expertise extends to modern frameworks like React, Tailwind CSS, and Spline, enabling me to develop interactive, efficient, and maintainable front-end architecture.
+          </p>
+        </di>
+        <di className="card time"></di>
+        <di className="card passion"></di>
+      </div>
+    </section>
+  );
+}
+
+export default AboutSection;
